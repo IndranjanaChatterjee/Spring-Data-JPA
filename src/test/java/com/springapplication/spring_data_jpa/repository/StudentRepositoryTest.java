@@ -1,5 +1,6 @@
 package com.springapplication.spring_data_jpa.repository;
 
+import com.springapplication.spring_data_jpa.entity.Guardian;
 import com.springapplication.spring_data_jpa.entity.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,15 +17,35 @@ class StudentRepositoryTest {
     @Test
     public void saveStudent() {
         Student student = Student.builder()
-                .emailId("shabbir@gmail.com")
+                .emailId("shabbira@gmail.com")
                 .firstName("Shabbir")
                 .lastName("Dawoodi")
-                .guardianName("Nikhil")
-                .guardianEmail("nikhil@gmail.com")
-                .guardianMobile("9999999999")
+                //.guardianName("Nikhil")
+                //.guardianEmail("nikhil@gmail.com")
+                //.guardianMobile("9999999999")
                 .build();
 
         studentRepository.save(student);
+    }
+
+    @Test
+    public void saveStudentWithGuardian() {
+
+        Guardian guardian = Guardian.builder()
+                .email("nikhill@gmail.com")
+                .name("Nikhil")
+                .mobile("9999956324")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("Shivam")
+                .emailId("shivami@gmail.com")
+                .lastName("Kumar")
+                .guardian(guardian)
+                .build();
+
+        studentRepository.save(student);
+
     }
 
 
